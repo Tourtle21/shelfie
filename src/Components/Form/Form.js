@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 class Form extends Component {
@@ -23,6 +23,16 @@ class Form extends Component {
             axios.get(`/api/inventory/${id}`)
             .then(res => this.setState(res.data[0]))
             .catch(err => console.log(err))
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (!this.props.match.params.id && prevState === this.state) {
+            this.setState ({
+                img: '',
+                name: '',
+                price: ''
+            });
         }
     }
 
@@ -54,7 +64,7 @@ class Form extends Component {
     render() {
         return (
             <div id='form'>
-                <img onError={(ev) => this.defaultSrc(ev)} id='form-img' src={this.state.img} />
+                <img onError={(ev) => this.defaultSrc(ev)} alt='broken' id='form-img' src={this.state.img} />
                 <h3>Image URL:</h3>
                 <input onChange={(e) => this.handleInput(e.target.value, 'img')}placeholder='URL' value={this.state.img} />
                 <h3>Product Name:</h3>

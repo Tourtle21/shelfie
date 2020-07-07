@@ -108,4 +108,7 @@
   outline: none;
   cursor: pointer;
   background-color: #ED6B5A;
+  font-size: 1.2em;
+  padding: 10px;
+  border-radius: 8px;
 }

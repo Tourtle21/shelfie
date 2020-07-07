@@ -16,7 +16,7 @@ class Dashboard extends Component {
     }
     getInventory() {
         axios.get('/api/inventory')
-        .then(res => this.setState({inventory: res.data}))
+        .then(res => this.setState({inventory: res.data.sort((a, b)=>{return a.name.toUpperCase() < b.name.toUpperCase() ? a.name.toUpperCase() === b.name.toUpperCase() ? 0 : -1 : 1})}))
         .catch(err => console.log(err));
     }
     deleteItem = (id) => {
