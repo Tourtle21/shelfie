@@ -28,7 +28,7 @@ class Dashboard extends Component {
     render() {
         const mappedProducts = this.state.inventory.map((item, i) => (<Product key={i} setProductFn={this.props.setProductFn} deleteItemFn={this.deleteItem} item={item} />));
         return (
-            <div>Dashboard
+            <div id='dashboard'>
                 {mappedProducts}
             </div>
         )
